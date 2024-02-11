@@ -5,9 +5,8 @@ const cors = require("cors");
 const mongoSanitize = require("express-mongo-sanitize");
 const HTTPSTATUSCODE = require("./src/utils/httpStatusCode");
 const { connectMongo } = require("./src/utils/db");
-const librosRoutes = require("./src/api/routes/libros.routes");
+const productoRoutes = require("./src/api/routes/productos.routes");
 const userRouter = require("./src/api/routes/user.routes");
-const autorRoutes = require("./src/api/routes/autor.router");
 
 connectMongo();
 const app = express();
@@ -25,15 +24,15 @@ app.use((req, res, next) => {
 });
 app.use(
   cors({
-    origin: ["*", "http://localhost:3001", "http://localhost:4200"],
+    origin: ["*", "http://localhost:3001"],
+    // "http://localhost:4200" puerto que habiamos puesto para que funcionara en anguñar estaba segido de una coma despues del 3001
     credentials: true,
   })
 );
 
 // routes
-app.use("/all-books", librosRoutes);
-app.use("/all-books/users", userRouter);
-app.use("/all-books/autor", autorRoutes);
+app.use("/productos", productoRoutes);
+// app.use("/all-books/users", userRouter);
 
 // ruta de bienvenida
 

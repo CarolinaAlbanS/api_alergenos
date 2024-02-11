@@ -1,65 +1,65 @@
-const Book = require("../models/libros.models");
+const Producto = require("../models/productos.models");
 const HTTPSTATUSCODE = require("../../utils/httpStatusCode");
 
-const getLibros = async (req, res, next) => {
+const getProductos = async (req, res, next) => {
   try {
-    const books = await Book.find();
+    const productos = await Producto.find();
     res.status(200).json({
       status: 200,
       message: HTTPSTATUSCODE[200],
-      data: books,
+      data: productos,
     });
   } catch (error) {
     next(error);
   }
 };
 
-const getLibroId = async (req, res, next) => {
+const getProductosId = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const libro = await Book.findById(id);
+    const productos = await Producto.findById(id);
     res.status(200).json({
       status: 200,
       message: HTTPSTATUSCODE[200],
-      data: libro,
+      data: productos,
     });
   } catch (error) {
     next(error);
   }
-}
+};
 
-const createlibros = async (req, res, next) => {
+const createProductos = async (req, res, next) => {
   try {
-    const book = new Book(req.body);
+    const productos = new Producto(req.body);
     // book.id = req.body.id;
     // book.img = req.body.img;
     // book.title = req.body.title;
     // book.autor = req.body.autor;
     // book.year = req.body.year;
 
-    if (await Book.findOne({ title: req.body.title })) {
+    if (await Producto.findOne({ title: req.body.title })) {
       return res.status(400).json({
         status: 400,
         message: HTTPSTATUSCODE[400],
         data: null,
       });
     }
-    const createBook = await book.save();
+    const createProducto = await productos.save();
     return res.status(201).json({
       status: 201,
       message: HTTPSTATUSCODE[201],
-      data: createBook,
+      data: createProducto,
     });
   } catch (error) {
     next(error);
   }
 };
 
-const deletelibros = async (req, res) => {
+const deleteProductos = async (req, res) => {
   try {
     const { id } = req.params;
-    const deletelibros = await Book.findByIdAndDelete(id);
-    if (!deletelibros) {
+    const deleteproducto = await Producto.findByIdAndDelete(id);
+    if (!deleteproducto) {
       return res.status(404).json({
         status: 404,
         messagee: HTTPSTATUSCODE[404],
@@ -71,12 +71,12 @@ const deletelibros = async (req, res) => {
   }
 };
 
-const updatelibros = async (request, response, next) => {
+const updateProductos = async (request, response, next) => {
   try {
     const id = request.params.id;
     const body = request.body;
-    const libro = await Book.findByIdAndUpdate(id, body, { new: true });
-    if (!libro) {
+    const producto = await Producto.findByIdAndUpdate(id, body, { new: true });
+    if (!producto) {
       return response.status(404).json({
         status: 404,
         message: HTTPSTATUSCODE[404],
@@ -92,4 +92,10 @@ const updatelibros = async (request, response, next) => {
   }
 };
 
-module.exports = { getLibros, getLibroId,  createlibros, deletelibros, updatelibros };
+module.exports = {
+  getProductos,
+  getProductos,
+  createProductos,
+  deleteProductos,
+  updateProductos,
+};
