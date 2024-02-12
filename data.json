@@ -1,0 +1,28 @@
+[
+    
+    
+    {
+    "nombre":"Leche",
+    "img": "https://st3.depositphotos.com/1187563/12528/i/450/depositphotos_125287046-stock-photo-milk-carton-box-3d-rendering.jpg",
+    "ingredientes": "leche de vaca",
+    "fabricante": "La lechera",
+    "fechaEscaneo": "11/02/24",
+    "alergenos": "lactosa y proteina de la leche" 
+},
+
+{
+    "name": "Carolina",
+  "surname": "ALban Sandoval",
+  "password": "carolina",
+  "email": "carolina@nolose.com",
+  "phone": 692388605,
+  "allergens": "Frutos secos, crustaceos",
+  "emergency": {
+    "name": "Raul",
+    "surname": "Martin",
+    "email": "raul@nolose.com",
+    "phone": 619614063
+  }
+}
+
+]

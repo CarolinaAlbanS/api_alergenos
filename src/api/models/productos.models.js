@@ -7,7 +7,7 @@ const productoSchema = new mongoose.Schema({
   img: { type: String, require: true },
   ingredientes: { type: String },
   fabricante: { type: String, require: true },
-  fechaEscaneo: { type: Number },
+  fechaEscaneo: { type: String },
   alergenos: { type: String },
 });
 

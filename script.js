@@ -16,6 +16,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(logger("dev"));
 app.set("secretKey", "nodeRestApi");
 app.use(mongoSanitize());
+
+// Respuesta que da nuestra app
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Methods", "GET,PATCH,POST,DELETE");
   res.header("Access-Control-Allow-Credentials", true);
@@ -32,14 +34,14 @@ app.use(
 
 // routes
 app.use("/productos", productoRoutes);
-// app.use("/all-books/users", userRouter);
+app.use("/users", userRouter);
 
 // ruta de bienvenida
 
 app.get("/", (request, response) => {
   response.status(200).json({
     message: "Welcome to my server",
-    app: "Books App",
+    app: "Porductos App",
   });
 });
 
