@@ -3,12 +3,13 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const HTTPSTATUSCODE = require("../../utils/httpStatusCode");
 const Producto = require("../models/productos.models");
+const { response } = require("express");
 
 const createUser = async (request, response, next) => {
   try {
     const user = new User(request.body);
 
-    console.log(request.body);
+    // console.log(request.body);
     // user.name = request.body.name;
     // user.password = request.body.password;
 
@@ -24,6 +25,8 @@ const createUser = async (request, response, next) => {
     }
 
     const createUsers = await user.save();
+    console.log(createUser);
+
     return response.status(201).json({
       status: 201,
       message: HTTPSTATUSCODE[201],
@@ -36,14 +39,16 @@ const createUser = async (request, response, next) => {
 
 const authenticate = async (request, response, next) => {
   try {
-    const userInfo = await User.findOne({ name: request.body.name });
+    // email y pasword
+    const userInfo = await User.findOne({ email: request.body.email });
     if (bcrypt.compareSync(request.body.password, userInfo.password)) {
       // if (userInfo.password == request.body.password) {
+
       userInfo.password = null;
       const token = jwt.sign(
         {
           id: userInfo._id,
-          name: userInfo.name,
+          email: userInfo.email,
         },
         request.app.get("secretKey"),
         { expiresIn: "1d" }
@@ -78,6 +83,27 @@ const logout = (request, response, next) => {
   }
 };
 
+const updateUser = async (request, response, next) => {
+  try {
+    const id = request.params.id;
+    const body = request.body;
+    const user = await User.findByIdAndUpdate(id, body, { new: true });
+    if (!user) {
+      return response.status(404).json({
+        status: 404,
+        message: HTTPSTATUSCODE[404],
+      });
+    }
+    response.status(200).json({
+      status: 200,
+      message: HTTPSTATUSCODE[200],
+      data: null,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 const getUsers = async (request, response, next) => {
   try {
     const users = await User.find();
@@ -90,10 +116,25 @@ const getUsers = async (request, response, next) => {
     next(error);
   }
 };
+const getUserId = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const productos = await User.findById(id);
+    res.status(200).json({
+      status: 200,
+      message: HTTPSTATUSCODE[200],
+      data: productos,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
 module.exports = {
   createUser,
   authenticate,
   logout,
+  updateUser,
   getUsers,
+  getUserId,
 };

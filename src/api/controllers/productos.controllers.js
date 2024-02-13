@@ -94,7 +94,7 @@ const updateProductos = async (request, response, next) => {
 
 module.exports = {
   getProductos,
-  getProductos,
+  getProductosId,
   createProductos,
   deleteProductos,
   updateProductos,

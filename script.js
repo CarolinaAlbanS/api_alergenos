@@ -26,7 +26,7 @@ app.use((req, res, next) => {
 });
 app.use(
   cors({
-    origin: ["*", "http://localhost:3001"],
+    origin: ["*", "http://localhost:3001", "http://localhost:3000"],
     // "http://localhost:4200" puerto que habiamos puesto para que funcionara en anguñar estaba segido de una coma despues del 3001
     credentials: true,
   })

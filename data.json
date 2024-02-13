@@ -23,6 +23,20 @@
     "email": "raul@nolose.com",
     "phone": 619614063
   }
+},
+{
+  "name": "Martina",
+"surname": "Gonzalez",
+"password": "martina",
+"email": "martina@nolose.com",
+"phone": 692388605,
+"allergens": "Frutos secos, crustaceos",
+"emergency": {
+  "name": "Fabian",
+  "surname": "Martin",
+  "email": "fabian@nolose.com",
+  "phone": 619614063
+}
 }
 
 ]

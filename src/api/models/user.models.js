@@ -4,16 +4,16 @@ const salt = 10; // complejidad del encriptado
 
 const userSchema = new mongoose.Schema({
   name: { type: String, unique: true, trim: true, required: true },
-  surname: { type: String, unique: true, trim: true, required: true },
   password: { type: String, trim: true, required: true },
   email: { type: String },
   phone: { type: Number, require: true },
+  img: { type: String },
   allergens: { type: String },
   emergency: {
     name: { type: String },
-    surname: { type: String },
     email: { type: String },
     phone: { type: Number },
+    seguro: { type: String },
   },
 });
 

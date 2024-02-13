@@ -4,13 +4,17 @@ const {
   createUser,
   authenticate,
   logout,
+  updateUser,
   getUsers,
+  getUserId,
 } = require("../controllers/user.controllers");
 const { isAuth } = require("../middlewares/auth.middleware");
 
 userRouter.post("/create", createUser);
-userRouter.post("/authenticate", [isAuth], authenticate);
+userRouter.post("/authenticate", authenticate);
 userRouter.post("/logout", [isAuth], logout);
+userRouter.patch("/:id", updateUser);
 userRouter.get("/", getUsers);
+userRouter.get("/:id", getUserId);
 
 module.exports = userRouter;
