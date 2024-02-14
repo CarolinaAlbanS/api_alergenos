@@ -2,7 +2,9 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const salt = 10; // complejidad del encriptado
 
-const userSchema = new mongoose.Schema({
+const Schema = mongoose.Schema;
+
+const userSchema = new Schema({
   name: { type: String, unique: true, trim: true, required: true },
   password: { type: String, trim: true, required: true },
   email: { type: String, required: true },
@@ -12,7 +14,7 @@ const userSchema = new mongoose.Schema({
   favorites: [{ type: Schema.Types.ObjectId, ref: "Producto" }],
   diario: [
     {
-      producto: { type: Schema.Types.ObjectId, ref: "Producto" },
+      producto: [{ type: Schema.Types.ObjectId, ref: "Producto" }],
       fechaEscaneo: { type: Number },
     },
   ],
