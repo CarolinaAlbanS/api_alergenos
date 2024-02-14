@@ -37,7 +37,7 @@ const createProductos = async (req, res, next) => {
     // book.autor = req.body.autor;
     // book.year = req.body.year;
 
-    if (await Producto.findOne({ title: req.body.title })) {
+    if (await Producto.findOne({ title: req.body.barcode})) {
       return res.status(400).json({
         status: 400,
         message: HTTPSTATUSCODE[400],

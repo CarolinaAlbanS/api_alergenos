@@ -8,6 +8,7 @@ const productoSchema = new mongoose.Schema({
   allergens: [{ type: String }],
   quantity: { type: String },
   traces: [{ type: String }],
+  barcode: {type: Number}
 });
 
 const Producto = mongoose.model("Producto", productoSchema);

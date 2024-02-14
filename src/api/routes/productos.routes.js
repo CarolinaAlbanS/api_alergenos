@@ -11,7 +11,7 @@ const { isAuth } = require("../middlewares/auth.middleware");
 
 productosRoutes.get("/", getProductos);
 productosRoutes.get("/:id", getProductosId);
-productosRoutes.post("/", createProductos);
+productosRoutes.post("/create", createProductos);
 productosRoutes.put("/:id", updateProductos);
 productosRoutes.delete("/:id", deleteProductos);
 
