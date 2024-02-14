@@ -28,6 +28,21 @@ const getProductosId = async (req, res, next) => {
   }
 };
 
+
+const getProductosCode = async (req, res, next) => {
+  try {
+    const { code } = req.params;
+    const productos = await Producto.findOne({barcode: code});
+    res.status(200).json({
+      status: 200,
+      message: HTTPSTATUSCODE[200],
+      data: productos,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 const createProductos = async (req, res, next) => {
   try {
     const productos = new Producto(req.body);
@@ -95,6 +110,7 @@ const updateProductos = async (request, response, next) => {
 module.exports = {
   getProductos,
   getProductosId,
+  getProductosCode,
   createProductos,
   deleteProductos,
   updateProductos,

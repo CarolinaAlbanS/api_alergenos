@@ -11,6 +11,7 @@ const userSchema = new Schema({
   phone: { type: Number, require: true },
   img: { type: String },
   allergens: [{ type: String }],
+  // favorites: [{ type: String, ref: "Producto" }],
   favorites: [{ type: Schema.Types.ObjectId, ref: "Producto" }],
   diario: [
     {
