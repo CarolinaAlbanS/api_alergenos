@@ -5,10 +5,17 @@ const salt = 10; // complejidad del encriptado
 const userSchema = new mongoose.Schema({
   name: { type: String, unique: true, trim: true, required: true },
   password: { type: String, trim: true, required: true },
-  email: { type: String },
+  email: { type: String, required: true },
   phone: { type: Number, require: true },
   img: { type: String },
-  allergens: { type: String },
+  allergens: [{ type: String }],
+  favorites: [{ type: Schema.Types.ObjectId, ref: "Producto" }],
+  diario: [
+    {
+      producto: { type: Schema.Types.ObjectId, ref: "Producto" },
+      fechaEscaneo: { type: Number },
+    },
+  ],
   emergency: {
     name: { type: String },
     email: { type: String },

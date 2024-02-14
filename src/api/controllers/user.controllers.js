@@ -9,10 +9,6 @@ const createUser = async (request, response, next) => {
   try {
     const user = new User(request.body);
 
-    // console.log(request.body);
-    // user.name = request.body.name;
-    // user.password = request.body.password;
-
     const salt = 10;
     user.password = await bcrypt.hash(request.body.password, salt);
 
@@ -106,7 +102,7 @@ const updateUser = async (request, response, next) => {
 
 const getUsers = async (request, response, next) => {
   try {
-    const users = await User.find();
+    const users = await User.find().populate("favoritos", "productos");
     response.status(200).json({
       status: 200,
       message: HTTPSTATUSCODE[200],
@@ -119,7 +115,10 @@ const getUsers = async (request, response, next) => {
 const getUserId = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const productos = await User.findById(id);
+    const productos = await User.findById(id).populate(
+      "favoritos",
+      "productos"
+    );
     res.status(200).json({
       status: 200,
       message: HTTPSTATUSCODE[200],
