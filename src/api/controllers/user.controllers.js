@@ -102,7 +102,7 @@ const updateUser = async (request, response, next) => {
 
 const getUsers = async (request, response, next) => {
   try {
-    const users = await User.find().populate("favoritos", "productos");
+    const users = await User.find().populate("favorites diario.producto ");
     response.status(200).json({
       status: 200,
       message: HTTPSTATUSCODE[200],
@@ -116,8 +116,7 @@ const getUserId = async (req, res, next) => {
   try {
     const { id } = req.params;
     const productos = await User.findById(id).populate(
-      "favoritos",
-      "productos"
+      "favorites diario.producto "
     );
     res.status(200).json({
       status: 200,
