@@ -37,6 +37,21 @@
   "email": "fabian@nolose.com",
   "phone": 619614063
 }
-}
+},{
+"name": "Estrella Sanchez",
+"password": "estrella",
+"email": "estrella.s@nolose.com",
+"phone": "698412357",
+"img": "https://st3.depositphotos.com/1187563/12528/i/450/depositphotos_125287046-stock-photo-milk-carton-box-3d-rendering.jpg" ,
+"allergens": ["nueves", "almendras", "fresas"],
+"favorites": [],
+"diario": [],
+"emergency": {
+  "name": "Carlota Lopez",
+  "email": "carlota.l@gmail.com",
+  "phone": 632987415,
+  "seguro": "sanitas"
+}}
+
 
 ]
