@@ -16,7 +16,8 @@ const userSchema = new Schema({
   diario: [
     {
       producto: [{ type: Schema.Types.ObjectId, ref: "Producto" }],
-      fechaEscaneo: { type: Number },
+      comentario: { type: String },
+      fecha: { type: Number },
     },
   ],
   emergency: {
