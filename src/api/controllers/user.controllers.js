@@ -114,6 +114,7 @@ const getUsers = async (request, response, next) => {
     next(error);
   }
 };
+
 const getUserId = async (req, res, next) => {
   try {
     const { id } = req.params;
