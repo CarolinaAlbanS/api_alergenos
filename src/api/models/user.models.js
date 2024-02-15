@@ -17,7 +17,7 @@ const userSchema = new Schema({
     {
       producto: [{ type: Schema.Types.ObjectId, ref: "Producto" }],
       comentario: { type: String },
-      fecha: { type: Number },
+      fecha: { type: Date },
     },
   ],
   emergency: {
