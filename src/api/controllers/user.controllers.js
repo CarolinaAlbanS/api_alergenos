@@ -69,7 +69,7 @@ const authenticate = async (request, response, next) => {
 
 const logout = (request, response, next) => {
   try {
-    return res.json({
+    return response.json({
       status: 200,
       message: HTTPSTATUSCODE[200],
       token: null,
