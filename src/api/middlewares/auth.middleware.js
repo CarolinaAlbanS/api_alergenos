@@ -3,9 +3,9 @@ const HTTPSTATUSCODE = require("../../utils/httpStatusCode");
 
 const isAuth = (request, response, next) => {
   const authorization = request.headers.authorization;
-
+  console.log(authorization);
   if (!authorization) {
-    return response.json({
+    return response.status(401).json({
       status: 401,
       message: HTTPSTATUSCODE[401],
       data: null,
@@ -14,7 +14,7 @@ const isAuth = (request, response, next) => {
 
   const splits = authorization.split(" ");
   if (splits.length != 2 || splits[0] != "Bearer") {
-    return response.json({
+    return response.status(400).json({
       status: 400,
       message: HTTPSTATUSCODE[400],
       data: null,

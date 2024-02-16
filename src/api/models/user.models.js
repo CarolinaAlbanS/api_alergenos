@@ -11,7 +11,14 @@ const userSchema = new Schema({
   phone: { type: Number, require: true },
   img: { type: String },
   allergens: [{ type: String }],
-  // favorites: [{ type: String, ref: "Producto" }],
+  emergency: [
+    {
+      name: { type: String },
+      email: { type: String },
+      phone: { type: Number },
+      seguro: { type: String },
+    },
+  ],
   favorites: [{ type: Schema.Types.ObjectId, ref: "Producto" }],
   diario: [
     {
@@ -20,12 +27,6 @@ const userSchema = new Schema({
       fecha: { type: Date },
     },
   ],
-  emergency: {
-    name: { type: String },
-    email: { type: String },
-    phone: { type: Number },
-    seguro: { type: String },
-  },
 });
 
 userSchema.pre("save", (next) => {
