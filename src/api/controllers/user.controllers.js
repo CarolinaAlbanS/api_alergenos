@@ -119,6 +119,25 @@ const updateDiario = async (request, response, next) => {
   }
 };
 
+const updateFavorito = async (request, response, next) => {
+  try {
+    const userId = request.params.id1;
+    const diarioId = request.params.id2;
+    const user = await User.findOne({ _id: userId });
+
+    const entradasFiltradas = user.diario.filter((entrada) => {
+      return entrada._id.toString() != diarioId.toString();
+    });
+
+    user.diario = entradasFiltradas;
+    const updatedUser = await User.findByIdAndUpdate(userId, user);
+
+    return response.status(200).json({ user });
+  } catch (error) {
+    next(error);
+  }
+};
+
 const getUsers = async (request, response, next) => {
   try {
     const users = await User.find()
@@ -156,6 +175,7 @@ module.exports = {
   logout,
   updateUser,
   updateDiario,
+  updateFavorito,
   getUsers,
   getUserId,
 };

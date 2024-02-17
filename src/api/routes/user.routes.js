@@ -8,6 +8,7 @@ const {
   updateDiario,
   getUsers,
   getUserId,
+  updateFavorito,
 } = require("../controllers/user.controllers");
 const { isAuth } = require("../middlewares/auth.middleware");
 
@@ -16,6 +17,7 @@ userRouter.post("/authenticate", authenticate);
 userRouter.post("/logout", [isAuth], logout);
 userRouter.patch("/:id", [isAuth], updateUser);
 userRouter.delete("/:id1/diario/:id2", [isAuth], updateDiario);
+userRouter.delete("/:id1/favorito/:id2", [isAuth], updateFavorito);
 userRouter.get("/", getUsers);
 userRouter.get("/:id", getUserId);
 
