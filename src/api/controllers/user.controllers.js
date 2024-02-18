@@ -121,15 +121,15 @@ const updateDiario = async (request, response, next) => {
 
 const updateFavorito = async (request, response, next) => {
   try {
-    const userId = request.params.id1;
-    const diarioId = request.params.id2;
+    const userId = request.params.id3;
+    const favoritoId = request.params.id4;
     const user = await User.findOne({ _id: userId });
 
-    const entradasFiltradas = user.diario.filter((entrada) => {
-      return entrada._id.toString() != diarioId.toString();
+    const entradasFiltradas = user.favorites.filter((fav) => {
+      return fav._id.toString() != favoritoId.toString();
     });
 
-    user.diario = entradasFiltradas;
+    user.favorites = entradasFiltradas;
     const updatedUser = await User.findByIdAndUpdate(userId, user);
 
     return response.status(200).json({ user });
